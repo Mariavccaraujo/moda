@@ -187,7 +187,7 @@
   .feat-note{font-size:12.5px; letter-spacing:.05em; color:#6b7a75; margin-bottom:34px; font-style:italic; font-family:'Fraunces',serif;}
   .feat-ctas{display:flex; gap:16px; flex-wrap:wrap;}
   .btn-ink{background:var(--ink-deep); color:var(--cream);}
-  .btn-ink:hover{background:var(--coral);}
+  .btn-ink:hover{background:var(--gold);}
   .btn-line{border:1px solid rgba(12,42,48,.3); color:var(--ink-deep);}
   .btn-line:hover{border-color:var(--ink-deep); background:rgba(12,42,48,.05);}
 
@@ -349,7 +349,7 @@
 .card-img-wrap svg{width:34%; height:34%; opacity:.92; transition:transform .5s cubic-bezier(.16,.8,.3,1);}
 .card:hover .card-img-wrap svg{transform:scale(1.08) rotate(-2deg);}
 .card-img-wrap::after{
-  content:"foto do produto"; position:absolute; bottom:12px; left:0; right:0; text-align:center;
+   position:absolute; bottom:12px; left:0; right:0; text-align:center;
   font-family:'Manrope',sans-serif; font-size:9.5px; letter-spacing:.16em; text-transform:uppercase;
   color:rgba(255,255,255,.75);
 }
@@ -357,6 +357,63 @@
 .cat-maio{background:linear-gradient(150deg,var(--ink-deep) 0%,#53d4ff 100%);}
 .cat-saida{background:linear-gradient(150deg,var(--coral-soft) 0%,var(--coral) 100%);}
 .cat-acessorio{background:linear-gradient(150deg,var(--gold) 0%,var(--gold-bright) 100%);}
+
+/* fotos reais de produto: mesmo enquadramento 4:5 dos ícones-placeholder */
+.card-img-wrap.has-photo{background:var(--sand-warm);}
+.card-img-wrap.has-photo img{
+  width:100%; height:100%; object-fit:cover; object-position:top center;
+  display:block; transition:transform .5s cubic-bezier(.16,.8,.3,1);
+}
+.card:hover .card-img-wrap.has-photo img{transform:scale(1.05);}
+.card-img-wrap.has-photo::after{content:none;}
+.card-img-wrap.has-photo{cursor:zoom-in;}
+
+/* ícone de ampliar */
+.zoom-icon{
+  position:absolute; bottom:12px; right:12px; z-index:3;
+  width:36px; height:36px; border-radius:50%;
+  background:rgba(19,42,58,0.55); backdrop-filter:blur(2px);
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:0 6px 16px -4px rgba(0,0,0,.4);
+  transition:transform .3s ease, background .3s ease;
+  pointer-events:none;
+}
+.zoom-icon svg{width:16px; height:16px; stroke:#fff;}
+.card:hover .zoom-icon, .car-slide:hover .zoom-icon{transform:scale(1.1); background:var(--ink-deep);}
+
+/* ---------- LIGHTBOX ---------- */
+.lightbox{
+  position:fixed; inset:0; z-index:400;
+  background:rgba(9,30,38,0.92);
+  display:flex; align-items:center; justify-content:center;
+  padding:40px 24px;
+  opacity:0; visibility:hidden;
+  transition:opacity .3s ease, visibility .3s ease;
+}
+.lightbox.open{opacity:1; visibility:visible;}
+.lightbox-inner{position:relative; max-width:min(92vw,720px); max-height:88vh;}
+.lightbox-inner img{
+  max-width:100%; max-height:88vh; width:auto; height:auto;
+  border-radius:6px; box-shadow:0 40px 80px -20px rgba(0,0,0,.6);
+  display:block; margin:0 auto;
+  transform:scale(.94); transition:transform .35s cubic-bezier(.16,.8,.3,1);
+}
+.lightbox.open .lightbox-inner img{transform:scale(1);}
+.lightbox-caption{
+  text-align:center; color:rgba(250,245,234,.85); font-family:'Fraunces',serif;
+  font-size:15px; margin-top:16px; letter-spacing:.01em;
+}
+.lightbox-close{
+  position:absolute; top:-46px; right:-6px; width:38px; height:38px; border-radius:50%;
+  background:rgba(250,245,234,.12); border:1px solid rgba(250,245,234,.3);
+  display:flex; align-items:center; justify-content:center; cursor:pointer;
+  transition:background .25s ease;
+}
+.lightbox-close:hover{background:rgba(250,245,234,.24);}
+.lightbox-close svg{width:16px; height:16px; stroke:#faf5ea;}
+@media(max-width:600px){
+  .lightbox-close{top:auto; bottom:calc(88vh + 14px); right:0;}
+}
 
 .card-body{padding:20px 20px 22px; display:flex; flex-direction:column; gap:10px; flex:1;}
 .card-body h3{font-family:'Fraunces',serif; font-weight:500; font-size:16px; color:var(--ink-deep); line-height:1.3;}
@@ -369,7 +426,7 @@
   background:transparent; color:var(--ink-deep); font-family:'Fraunces',serif; font-size:12px;
   cursor:pointer; transition:all .25s ease; display:flex; align-items:center; justify-content:center;
 }
-.size-opt:hover{border-color:var(--coral); color:var(--coral);}
+.size-opt:hover{border-color:var(--gold-bright); color:var(--gold-bright);}
 .size-opt.active{background:var(--ink-deep); border-color:var(--ink-deep); color:var(--cream);}
 .size-unico{font-size:11px; letter-spacing:.06em; color:#6b7a75; font-style:italic; font-family:'Fraunces',serif;}
 
@@ -381,7 +438,7 @@
   letter-spacing:.12em; text-transform:uppercase;
   cursor:pointer; transition:background .3s ease, transform .15s ease;
 }
-.btn-add-cart:hover{background:var(--coral);}
+.btn-add-cart:hover{background:var(--gold);}
 .btn-add-cart:active{transform:scale(.97);}
 .btn-add-cart.added{background:#2f8f5a;}
 .btn-add-cart.shake{animation:shake-size .4s ease;}
@@ -411,7 +468,7 @@
   display:flex; align-items:center; justify-content:center; box-shadow:0 14px 30px -10px rgba(0,0,0,.5);
   border:none; cursor:pointer; transition:transform .3s ease, background .3s ease;
 }
-.cart-fab:hover{transform:scale(1.08); background:var(--coral);}
+.cart-fab:hover{transform:scale(1.2); background:var(--gold);}
 .cart-fab .cart-badge{top:-4px; right:-4px;}
 
 /* ---------- CART DRAWER ---------- */
@@ -525,7 +582,7 @@
   /* ---------- WHATSAPP FLOAT ---------- */
   .wa-float{
     position:fixed; bottom:26px; right:26px; z-index:90;
-    width:58px; height:58px; border-radius:50%; background:#f03813;
+    width:58px; height:58px; border-radius:50%; background:var(--gold);
     display:flex; align-items:center; justify-content:center; box-shadow:0 14px 30px -10px rgba(0,0,0,.5);
     transition:transform .3s ease;
   }
@@ -822,6 +879,46 @@
   background: var(--ink-deep);
   transform: scale(1.25);
 }
+  /* ---------- SIZE GUIDE ---------- */
+  .size-guide{
+    background:var(--sand); padding:110px 0 130px;
+  }
+  .size-guide-head{max-width:640px; margin:0 auto 50px; text-align:center;}
+  .size-guide-head .eyebrow{color:var(--gold); justify-content:center; display:flex; gap:14px; margin-bottom:18px;}
+  .size-guide-head h2{font-size:clamp(30px,3.4vw,44px); line-height:1.08; margin-bottom:16px;}
+  .size-guide-head p{font-size:15.5px; line-height:1.75; color:#3c4c47; font-weight:300;}
+  .size-table-wrap{
+    max-width:900px; margin:0 auto; background:var(--cream);
+    border-radius:6px; overflow:hidden; box-shadow:var(--shadow);
+  }
+  table.size-table{width:100%; border-collapse:collapse; font-family:'Manrope',sans-serif;}
+  table.size-table caption{
+    caption-side:top; text-align:left; padding:26px 30px 0;
+    font-family:'Fraunces',serif; font-size:20px; color:var(--ink-deep);
+  }
+  table.size-table thead th{
+    background:var(--ink-deep); color:var(--cream);
+    font-size:11.5px; letter-spacing:.14em; text-transform:uppercase; font-weight:600;
+    padding:16px 14px; text-align:center;
+  }
+  table.size-table thead th:first-child{text-align:left; padding-left:26px;}
+  table.size-table tbody td{
+    padding:15px 14px; text-align:center; font-size:14.5px; color:#33443f;
+    border-bottom:1px solid var(--line);
+  }
+  table.size-table tbody td:first-child{
+    text-align:left; padding-left:26px; font-family:'Fraunces',serif; font-size:16px; color:var(--ink-deep); font-weight:600;
+  }
+  table.size-table tbody tr:last-child td{border-bottom:none;}
+  table.size-table tbody tr:hover td{background:rgba(83,212,255,.08);}
+  .size-guide-note{
+    max-width:900px; margin:26px auto 0; display:flex; gap:12px; align-items:flex-start;
+    font-size:13px; line-height:1.7; color:#5a6b66; font-style:italic; font-family:'Fraunces',serif;
+  }
+  @media (max-width:640px){
+    table.size-table{font-size:12.5px;}
+    table.size-table thead th, table.size-table tbody td{padding:11px 6px;}
+  }
 </style>
 </head>
 <body>
@@ -836,13 +933,12 @@
       </a>
       <div class="nav-links" id="navLinks">
         <a href="#colecao">Coleção</a>
-        <a href="#cores">Cores</a>
         <a href="#sobre">Sobre</a>
         <button class="cart-trigger" onclick="toggleCart()" aria-label="Abrir cesta">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
           <span class="cart-badge" id="hdr-badge">0</span>
         </button>
-        <a href="#contato" class="btn btn-outline">Fale conosco</a>
+        <a href="https://wa.me/5588496606744" class="btn btn-outline">Fale conosco</a>
       </div>
       <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">
         <span></span><span></span><span></span>
@@ -887,8 +983,8 @@
         <div class="frame">
           <img src="maioverde.png">      </div>
         <div class="feat-tag">
-          <span class="cur">Por:</span>
-          <div class="price">R$115,00</div>
+          <span class="cur" style="color:white">Por:</span>
+          <div class="price"  style="color:white">R$115,00</div>
         </div>
       </div>
       <div class="feat-copy reveal">
@@ -936,14 +1032,14 @@
 
   <div class="prod-grid" id="product-grid">
 
-    <div class="card" data-name="Biquíni Ondas do Mar" data-price="R$129,90" data-cat="biquini">
-      <div class="card-img-wrap cat-biquini">
+    <div class="card" data-name="Biquíni Verde Limão" data-price="R$89,00" data-cat="biquini">
+      <div class="card-img-wrap cat-biquini has-photo" onclick="openLightbox(this.querySelector('img').src, 'Biquíni Verde Limão')">
         <span class="badge">Novo</span>
-        <svg viewBox="0 0 64 64" fill="none" stroke="#fff" stroke-width="1.6"><path d="M10 20c4-6 12-8 22-8s18 2 22 8"/><circle cx="18" cy="24" r="7"/><circle cx="46" cy="24" r="7"/><path d="M20 38c4 8 8 12 12 12s8-4 12-12"/></svg>
+        <img src="biquiniverde.png" alt="Biquíni Verde Limão"><span class="zoom-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span>
       </div>
       <div class="card-body">
-        <h3>Biquíni Ondas do Mar</h3>
-        <span class="price">129,90</span>
+        <h3>Biquíni Verde Limão</h3>
+        <span class="price">89,00</span>
         <div class="size-row">
           <button class="size-opt" data-size="P" onclick="selectSize(this)">P</button>
           <button class="size-opt" data-size="M" onclick="selectSize(this)">M</button>
@@ -957,13 +1053,13 @@
       </div>
     </div>
 
-    <div class="card" data-name="Biquíni Laço Dourado" data-price="R$139,90" data-cat="biquini">
-      <div class="card-img-wrap cat-biquini">
-        <svg viewBox="0 0 64 64" fill="none" stroke="#fff" stroke-width="1.6"><path d="M10 20c4-6 12-8 22-8s18 2 22 8"/><circle cx="18" cy="24" r="7"/><circle cx="46" cy="24" r="7"/><path d="M20 38c4 8 8 12 12 12s8-4 12-12"/><circle cx="32" cy="16" r="2.4" fill="#fff" stroke="none"/></svg>
+    <div class="card" data-name="Biquíni Vermelho Curtininha" data-price="R$75,00" data-cat="biquini">
+      <div class="card-img-wrap cat-biquini has-photo" onclick="openLightbox(this.querySelector('img').src, 'Biquíni Vermelho Curtininha')">
+        <img src="biquinivermelho.png" alt="Biquíni Vermelho Curtininha"><span class="zoom-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span>
       </div>
       <div class="card-body">
-        <h3>Biquíni Laço Dourado</h3>
-        <span class="price">139,90</span>
+        <h3>Biquíni Vermelho Curtininha</h3>
+        <span class="price">75,00</span>
         <div class="size-row">
           <button class="size-opt" data-size="P" onclick="selectSize(this)">P</button>
           <button class="size-opt" data-size="M" onclick="selectSize(this)">M</button>
@@ -977,13 +1073,13 @@
       </div>
     </div>
 
-    <div class="card" data-name="Biquíni Tri Fixo Coral" data-price="R$119,90" data-cat="biquini">
-      <div class="card-img-wrap cat-biquini">
-        <svg viewBox="0 0 64 64" fill="none" stroke="#fff" stroke-width="1.6"><path d="M10 20c4-6 12-8 22-8s18 2 22 8"/><circle cx="18" cy="24" r="7"/><circle cx="46" cy="24" r="7"/><path d="M20 38c4 8 8 12 12 12s8-4 12-12"/></svg>
+    <div class="card" data-name="Biquíni Branco" data-price="R$75,00" data-cat="biquini">
+      <div class="card-img-wrap cat-biquini has-photo" onclick="openLightbox(this.querySelector('img').src, 'Biquíni Branco')">
+        <img src="biquinibranco.png" alt="Biquíni Branco"><span class="zoom-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span>
       </div>
       <div class="card-body">
-        <h3>Biquíni Tri Fixo Coral</h3>
-        <span class="price">119,90</span>
+        <h3>Biquíni Branco</h3>
+        <span class="price">75,00</span>
         <div class="size-row">
           <button class="size-opt" data-size="P" onclick="selectSize(this)">P</button>
           <button class="size-opt" data-size="M" onclick="selectSize(this)">M</button>
@@ -997,13 +1093,13 @@
       </div>
     </div>
 
-    <div class="card" data-name="Biquíni Cortininha Azul" data-price="R$134,90" data-cat="biquini">
-      <div class="card-img-wrap cat-biquini">
-        <svg viewBox="0 0 64 64" fill="none" stroke="#fff" stroke-width="1.6"><path d="M10 20c4-6 12-8 22-8s18 2 22 8"/><circle cx="18" cy="24" r="7"/><circle cx="46" cy="24" r="7"/><path d="M20 38c4 8 8 12 12 12s8-4 12-12"/></svg>
+    <div class="card" data-name="Biquíni Pink" data-price="R$89,00" data-cat="biquini">
+      <div class="card-img-wrap cat-biquini has-photo" onclick="openLightbox(this.querySelector('img').src, 'Biquíni Pink')">
+        <img src="biquinipink.png" alt="Biquíni Pink"><span class="zoom-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span>
       </div>
       <div class="card-body">
-        <h3>Biquíni Cortininha Azul</h3>
-        <span class="price">134,90</span>
+        <h3>Biquíni Pink</h3>
+        <span class="price">89,00</span>
         <div class="size-row">
           <button class="size-opt" data-size="P" onclick="selectSize(this)">P</button>
           <button class="size-opt" data-size="M" onclick="selectSize(this)">M</button>
@@ -1017,10 +1113,226 @@
       </div>
     </div>
 
+
+    <div class="card" data-name="Biquíni Terracota" data-price="R$89,00" data-cat="biquini">
+      <div class="card-img-wrap cat-biquini has-photo" onclick="openLightbox(this.querySelector('img').src, 'Biquíni Terracota')">
+        <img src="biquiniterracota.png" alt="Biquíni Terracota"><span class="zoom-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span>
+      </div>
+      <div class="card-body">
+        <h3>Biquíni Terracota</h3>
+        <span class="price">89,00</span>
+        <div class="size-row">
+          <button class="size-opt" data-size="P" onclick="selectSize(this)">P</button>
+          <button class="size-opt" data-size="M" onclick="selectSize(this)">M</button>
+          <button class="size-opt" data-size="G" onclick="selectSize(this)">G</button>
+          <button class="size-opt" data-size="GG" onclick="selectSize(this)">GG</button>
+        </div>
+        <button class="btn-add-cart" onclick="addToCartFromCard(this)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          Adicionar à Cesta
+        </button>
+      </div>
+    </div>
+
+
+    <div class="card" data-name="Biquíni Coral" data-price="R$89,00" data-cat="biquini">
+      <div class="card-img-wrap cat-biquini has-photo" onclick="openLightbox(this.querySelector('img').src, 'Biquíni Coral')">
+        <img src="biquinicoral.png" alt="Biquíni Coral"><span class="zoom-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span>
+      </div>
+      <div class="card-body">
+        <h3>Biquíni Coral</h3>
+        <span class="price">89,00</span>
+        <div class="size-row">
+          <button class="size-opt" data-size="P" onclick="selectSize(this)">P</button>
+          <button class="size-opt" data-size="M" onclick="selectSize(this)">M</button>
+          <button class="size-opt" data-size="G" onclick="selectSize(this)">G</button>
+          <button class="size-opt" data-size="GG" onclick="selectSize(this)">GG</button>
+        </div>
+        <button class="btn-add-cart" onclick="addToCartFromCard(this)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          Adicionar à Cesta
+        </button>
+      </div>
+    </div>
+
+
+    <div class="card" data-name="Biquíni Verde Metalizado" data-price="R$89,00" data-cat="biquini">
+      <div class="card-img-wrap cat-biquini has-photo" onclick="openLightbox(this.querySelector('img').src, 'Biquíni Verde')">
+        <img src="biqverde.png" alt="Biquíni Verde"><span class="zoom-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span>
+      </div>
+      <div class="card-body">
+        <h3>Biquíni Verde</h3>
+        <span class="price">89,00</span>
+        <div class="size-row">
+          <button class="size-opt" data-size="P" onclick="selectSize(this)">P</button>
+          <button class="size-opt" data-size="M" onclick="selectSize(this)">M</button>
+          <button class="size-opt" data-size="G" onclick="selectSize(this)">G</button>
+          <button class="size-opt" data-size="GG" onclick="selectSize(this)">GG</button>
+        </div>
+        <button class="btn-add-cart" onclick="addToCartFromCard(this)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          Adicionar à Cesta
+        </button>
+      </div>
+    </div>
+ <div class="card" data-name="Biquíni Verde" data-price="R$89,00" data-cat="biquini">
+      <div class="card-img-wrap cat-biquini has-photo" onclick="openLightbox(this.querySelector('img').src, 'Biquíni Verde')">
+        <img src="biquiniverdeescuro.png" alt="Biquíni Verde"><span class="zoom-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span>
+      </div>
+      <div class="card-body">
+        <h3>Biquíni Metalizado Verde</h3>
+        <span class="price">89,00</span>
+        <div class="size-row">
+          <button class="size-opt" data-size="P" onclick="selectSize(this)">P</button>
+          <button class="size-opt" data-size="M" onclick="selectSize(this)">M</button>
+          <button class="size-opt" data-size="G" onclick="selectSize(this)">G</button>
+          <button class="size-opt" data-size="GG" onclick="selectSize(this)">GG</button>
+        </div>
+        <button class="btn-add-cart" onclick="addToCartFromCard(this)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          Adicionar à Cesta
+        </button>
+      </div>
+    </div>
+
+ <div class="card" data-name="Biquíni Oncinha Marrom" data-price="R$89,00" data-cat="biquini">
+      <div class="card-img-wrap cat-biquini has-photo" onclick="openLightbox(this.querySelector('img').src, 'Biquíni Marrom')">
+        <img src="biquinimarrom.png" alt="Biquíni Marrom"><span class="zoom-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span>
+      </div>
+      <div class="card-body">
+        <h3>Biquíni Marrom</h3>
+        <span class="price">89,00</span>
+        <div class="size-row">
+          <button class="size-opt" data-size="P" onclick="selectSize(this)">P</button>
+          <button class="size-opt" data-size="M" onclick="selectSize(this)">M</button>
+          <button class="size-opt" data-size="G" onclick="selectSize(this)">G</button>
+          <button class="size-opt" data-size="GG" onclick="selectSize(this)">GG</button>
+        </div>
+        <button class="btn-add-cart" onclick="addToCartFromCard(this)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          Adicionar à Cesta
+        </button>
+      </div>
+    </div>
+
+ <div class="card" data-name="Biquíni Marrom" data-price="R$89,00" data-cat="biquini">
+      <div class="card-img-wrap cat-biquini has-photo" onclick="openLightbox(this.querySelector('img').src, 'Biquíni Marrom')">
+        <img src="biqmarrom.png" alt="Biquíni Marrom"><span class="zoom-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span>
+      </div>
+      <div class="card-body">
+        <h3>Biquíni Oncinha Marrom</h3>
+        <span class="price">89,00</span>
+        <div class="size-row">
+          <button class="size-opt" data-size="P" onclick="selectSize(this)">P</button>
+          <button class="size-opt" data-size="M" onclick="selectSize(this)">M</button>
+          <button class="size-opt" data-size="G" onclick="selectSize(this)">G</button>
+          <button class="size-opt" data-size="GG" onclick="selectSize(this)">GG</button>
+        </div>
+        <button class="btn-add-cart" onclick="addToCartFromCard(this)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          Adicionar à Cesta
+        </button>
+      </div>
+    </div>
+ <div class="card" data-name="Biquíni Verde Neon" data-price="R$89,00" data-cat="biquini">
+      <div class="card-img-wrap cat-biquini has-photo" onclick="openLightbox(this.querySelector('img').src, 'Biquíni Verde Neon')">
+        <img src="biquiniverdeneon.png" alt="Biquíni Verde Neon"><span class="zoom-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span>
+      </div>
+      <div class="card-body">
+        <h3>Biquíni Verde Neon</h3>
+        <span class="price">89,00</span>
+        <div class="size-row">
+          <button class="size-opt" data-size="P" onclick="selectSize(this)">P</button>
+          <button class="size-opt" data-size="M" onclick="selectSize(this)">M</button>
+          <button class="size-opt" data-size="G" onclick="selectSize(this)">G</button>
+          <button class="size-opt" data-size="GG" onclick="selectSize(this)">GG</button>
+        </div>
+        <button class="btn-add-cart" onclick="addToCartFromCard(this)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          Adicionar à Cesta
+        </button>
+      </div>
+    </div>
+ <div class="card" data-name="Biquíni Laranja Neon" data-price="R$89,00" data-cat="biquini">
+      <div class="card-img-wrap cat-biquini has-photo" onclick="openLightbox(this.querySelector('img').src, 'Biquíni Laranja Neon')">
+        <img src="biqlaranja.png" alt="Biquíni Laranja Neon"><span class="zoom-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span>
+      </div>
+      <div class="card-body">
+        <h3>Biquíni Laranja Neon</h3>
+        <span class="price">89,00</span>
+        <div class="size-row">
+          <button class="size-opt" data-size="P" onclick="selectSize(this)">P</button>
+          <button class="size-opt" data-size="M" onclick="selectSize(this)">M</button>
+          <button class="size-opt" data-size="G" onclick="selectSize(this)">G</button>
+          <button class="size-opt" data-size="GG" onclick="selectSize(this)">GG</button>
+        </div>
+        <button class="btn-add-cart" onclick="addToCartFromCard(this)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          Adicionar à Cesta
+        </button>
+      </div>
+    </div>
+<div class="card" data-name="Biquíni Azule" data-price="R$89,00" data-cat="biquini">
+      <div class="card-img-wrap cat-biquini has-photo" onclick="openLightbox(this.querySelector('img').src, 'Biquíni Azul ')">
+        <img src="biqazul.jpg" alt="Biquíni Azul "><span class="zoom-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span>
+      </div>
+      <div class="card-body">
+        <h3>Biquíni Azul </h3>
+        <span class="price">89,00</span>
+        <div class="size-row">
+          <button class="size-opt" data-size="P" onclick="selectSize(this)">P</button>
+          <button class="size-opt" data-size="M" onclick="selectSize(this)">M</button>
+          <button class="size-opt" data-size="G" onclick="selectSize(this)">G</button>
+          <button class="size-opt" data-size="GG" onclick="selectSize(this)">GG</button>
+        </div>
+        <button class="btn-add-cart" onclick="addToCartFromCard(this)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          Adicionar à Cesta
+        </button>
+      </div>
+    </div>
+<div class="card" data-name="Biquíni Azul Plus Size" data-price="R$89,00" data-cat="biquini">
+      <div class="card-img-wrap cat-biquini has-photo" onclick="openLightbox(this.querySelector('img').src, 'Biquíni Azul Plus Size')">
+        <img src="biqazulplus.jpg" alt="Biquíni Azul Plus Size"><span class="zoom-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span>
+      </div>
+      <div class="card-body">
+        <h3>Biquíni Azul Plus Size</h3>
+        <span class="price">89,00</span>
+        <div class="size-row">
+          <button class="size-opt" data-size="P" onclick="selectSize(this)">P</button>
+          <button class="size-opt" data-size="M" onclick="selectSize(this)">M</button>
+          <button class="size-opt" data-size="G" onclick="selectSize(this)">G</button>
+          <button class="size-opt" data-size="GG" onclick="selectSize(this)">GG</button>
+        </div>
+        <button class="btn-add-cart" onclick="addToCartFromCard(this)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          Adicionar à Cesta
+        </button>
+      </div>
+    </div>
+ <div class="card" data-name="Biquíni Plus Size" data-price="R$89,00" data-cat="biquini">
+      <div class="card-img-wrap cat-biquini has-photo" onclick="openLightbox(this.querySelector('img').src, 'Biquíni Plus Size')">
+        <img src="biqpreto.png" alt="Biquíni Plus Size"><span class="zoom-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span>
+      </div>
+      <div class="card-body">
+        <h3>Biquíni Plus Size</h3>
+        <span class="price">89,00</span>
+        <div class="size-row">
+          <button class="size-opt" data-size="P" onclick="selectSize(this)">P</button>
+          <button class="size-opt" data-size="M" onclick="selectSize(this)">M</button>
+          <button class="size-opt" data-size="G" onclick="selectSize(this)">G</button>
+          <button class="size-opt" data-size="GG" onclick="selectSize(this)">GG</button>
+        </div>
+        <button class="btn-add-cart" onclick="addToCartFromCard(this)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          Adicionar à Cesta
+        </button>
+      </div>
+    </div>
     <div class="card" data-name="Maiô Sereia Decote V" data-price="R$115,00" data-cat="maio">
-      
- <img src="maiopreto.png" alt="Maiô Sereia Decote V">
-
+      <div class="card-img-wrap has-photo" onclick="openLightbox(this.querySelector('img').src, 'Maiô Sereia Decote V')">
+        <img src="maiopreto.png" alt="Maiô Sereia Decote V"><span class="zoom-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span>
+      </div>
       <div class="card-body">
         <h3>Maiô Sereia Decote V</h3>
         <span class="price">115,00</span>
@@ -1038,9 +1350,9 @@
     </div>
 
     <div class="card" data-name="Maiô Marrom" data-price="R$115,00" data-cat="maio">
-       
-       <img src="maiodecotequadrado.png" alt="Maiô Marrom">
-
+      <div class="card-img-wrap has-photo" onclick="openLightbox(this.querySelector('img').src, 'Maiô Marrom')">
+        <img src="maiodecotequadrado.png" alt="Maiô Marrom"><span class="zoom-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span>
+      </div>
       <div class="card-body">
         <h3>Maiô Marrom</h3>
         <span class="price">115,00</span>
@@ -1056,10 +1368,10 @@
         </button>
       </div>
     </div>
-    <div class="card" data-name="Maiô Marrom" data-price="R$115,00" data-cat="maio">
-       
-       <img src="maiodecoteamarrado.png" alt="Maiô Marrom">
-
+    <div class="card" data-name="Maiô Marrom" data-price="R$115 ,00" data-cat="maio">
+      <div class="card-img-wrap has-photo" onclick="openLightbox(this.querySelector('img').src, 'Maiô Marrom')">
+        <img src="maiodecoteamarrado.png" alt="Maiô Marrom"><span class="zoom-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span>
+      </div>
       <div class="card-body">
         <h3>Maiô Marrom</h3>
         <span class="price">115,00</span>
@@ -1076,9 +1388,9 @@
       </div>
     </div>
     <div class="card" data-name="Maiô Coral" data-price="R$115,00" data-cat="maio">
-       
-       <img src="maiocoral2.png" alt="Maiô Coral">
-
+      <div class="card-img-wrap has-photo" onclick="openLightbox(this.querySelector('img').src, 'Maiô Coral')">
+        <img src="maiocoral2.png" alt="Maiô Coral"><span class="zoom-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span>
+      </div>
       <div class="card-body">
         <h3>Maiô Coral</h3>
         <span class="price">115,00</span>
@@ -1096,9 +1408,9 @@
     </div>
 
     <div class="card" data-name="Maiô Marrom" data-price="R$115,00" data-cat="maio">
-       
-       <img src="maiomarrom.png" alt="Maiô Marrom">
-
+      <div class="card-img-wrap has-photo" onclick="openLightbox(this.querySelector('img').src, 'Maiô Marrom')">
+        <img src="maiomarrom.png" alt="Maiô Marrom"><span class="zoom-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span>
+      </div>
       <div class="card-body">
         <h3>Maiô Marrom</h3>
         <span class="price">115,00</span>
@@ -1115,9 +1427,9 @@
       </div>
     </div>
     <div class="card" data-name="Maiô Preto" data-price="R$115,00" data-cat="maio">
-       
-       <img src="maiopretodecorado.png" alt="Maiô Preto">
-
+      <div class="card-img-wrap has-photo" onclick="openLightbox(this.querySelector('img').src, 'Maiô Preto')">
+        <img src="maiopretodecorado.png" alt="Maiô Preto"><span class="zoom-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span>
+      </div>
       <div class="card-body">
         <h3>Maiô Preto</h3>
         <span class="price">115,00</span>
@@ -1135,8 +1447,9 @@
     </div>
 
     <div class="card" data-name="Maiô Verde" data-price="R$115,00" data-cat="maio">
-       
-      <img src="maioverde.png">
+      <div class="card-img-wrap has-photo" onclick="openLightbox(this.querySelector('img').src, '')">
+        <img src="maioverde.png"><span class="zoom-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span>
+      </div>
       <div class="card-body">
         <h3>Maiô Verde</h3>
         <span class="price">115,00</span>
@@ -1154,9 +1467,9 @@
     </div>
 
     <div class="card" data-name="Maiô Marrom" data-price="R$115,00" data-cat="maio">
-       
-       <img src="maiomarromescuro.png" alt="Maiô Marrom">
-
+      <div class="card-img-wrap has-photo" onclick="openLightbox(this.querySelector('img').src, 'Maiô Marrom')">
+        <img src="maiomarromescuro.png" alt="Maiô Marrom"><span class="zoom-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span>
+      </div>
       <div class="card-body">
         <h3>Maiô Marrom</h3>
         <span class="price">115,00</span>
@@ -1174,9 +1487,9 @@
     </div>
     
     <div class="card" data-name="Maiô Verde com decote em V" data-price="R$115,00" data-cat="maio">
-       
-       <img src="maioverdedecotev.png" alt="Maiô Verde com decote em V">
-
+      <div class="card-img-wrap has-photo" onclick="openLightbox(this.querySelector('img').src, 'Maiô Verde com decote em V')">
+        <img src="maioverdedecotev.png" alt="Maiô Verde com decote em V"><span class="zoom-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span>
+      </div>
       <div class="card-body">
         <h3>Maiô Verde com decote em V</h3>
         <span class="price">115,00</span>
@@ -1193,8 +1506,9 @@
       </div>
     </div>
     <div class="card" data-name="Maiô Coral com decote V" data-price="R$115,00" data-cat="maio">
-       
-      <img src="maiovcoral.png">
+      <div class="card-img-wrap has-photo" onclick="openLightbox(this.querySelector('img').src, '')">
+        <img src="maiovcoral.png"><span class="zoom-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span>
+      </div>
       <div class="card-body">
         <h3>Maiô Coral com decote V</h3>
         <span class="price">115,00</span>
@@ -1210,87 +1524,7 @@
         </button>
       </div>
     </div>
-    <div class="card" data-name="Saída de Praia Kaftan" data-price="R$99,90" data-cat="saida">
-      <div class="card-img-wrap cat-saida">
-        <svg viewBox="0 0 64 64" fill="none" stroke="#fff" stroke-width="1.6"><path d="M24 8h16l6 10-8 4v34H26V22l-8-4z"/><path d="M24 8c0 6 4 8 8 8s8-2 8-8"/></svg>
-      </div>
-      <div class="card-body">
-        <h3>Saída de Praia Kaftan</h3>
-        <span class="price">99,90</span>
-        <div class="size-row">
-          <button class="size-opt" data-size="P/M" onclick="selectSize(this)">P/M</button>
-          <button class="size-opt" data-size="G/GG" onclick="selectSize(this)">G/GG</button>
-        </div>
-        <button class="btn-add-cart" onclick="addToCartFromCard(this)">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-          Adicionar à Cesta
-        </button>
-      </div>
-    </div>
 
-    <div class="card" data-name="Saída de Praia Renda" data-price="R$109,90" data-cat="saida">
-      <div class="card-img-wrap cat-saida">
-        <span class="badge">Novo</span>
-        <svg viewBox="0 0 64 64" fill="none" stroke="#fff" stroke-width="1.6"><path d="M24 8h16l6 10-8 4v34H26V22l-8-4z"/><path d="M24 8c0 6 4 8 8 8s8-2 8-8"/></svg>
-      </div>
-      <div class="card-body">
-        <h3>Saída de Praia Renda</h3>
-        <span class="price">109,90</span>
-        <div class="size-row">
-          <button class="size-opt" data-size="P/M" onclick="selectSize(this)">P/M</button>
-          <button class="size-opt" data-size="G/GG" onclick="selectSize(this)">G/GG</button>
-        </div>
-        <button class="btn-add-cart" onclick="addToCartFromCard(this)">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-          Adicionar à Cesta
-        </button>
-      </div>
-    </div>
-
-    <div class="card" data-name="Chapéu de Palha Litoral" data-price="R$79,90" data-cat="acessorio">
-      <div class="card-img-wrap cat-acessorio">
-        <svg viewBox="0 0 64 64" fill="none" stroke="#3cc5f3" stroke-width="1.6"><ellipse cx="32" cy="38" rx="26" ry="7"/><path d="M20 38c0-10 5-24 12-24s12 14 12 24"/></svg>
-      </div>
-      <div class="card-body">
-        <h3>Chapéu de Palha Litoral</h3>
-        <span class="price">79,90</span>
-        <span class="size-unico">Tamanho único</span>
-        <button class="btn-add-cart" onclick="addToCartFromCard(this)">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-          Adicionar à Cesta
-        </button>
-      </div>
-    </div>
-
-    <div class="card" data-name="Bolsa de Praia Palha" data-price="R$89,90" data-cat="acessorio">
-      <div class="card-img-wrap cat-acessorio">
-        <svg viewBox="0 0 64 64" fill="none" stroke="#3cc5f3" stroke-width="1.6"><path d="M16 26h32l-3 28H19z"/><path d="M24 26c0-8 3-14 8-14s8 6 8 14"/></svg>
-      </div>
-      <div class="card-body">
-        <h3>Bolsa de Praia Palha</h3>
-        <span class="price">89,90</span>
-        <span class="size-unico">Tamanho único</span>
-        <button class="btn-add-cart" onclick="addToCartFromCard(this)">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-          Adicionar à Cesta
-        </button>
-      </div>
-    </div>
-
-    <div class="card" data-name="Canga Estampada Mar" data-price="R$69,90" data-cat="acessorio">
-      <div class="card-img-wrap cat-acessorio">
-        <svg viewBox="0 0 64 64" fill="none" stroke="#3cc5f3" stroke-width="1.6"><rect x="10" y="10" width="44" height="44" rx="2"/><path d="M10 24h44M10 38h44M24 10v44M38 10v44"/></svg>
-      </div>
-      <div class="card-body">
-        <h3>Canga Estampada Mar</h3>
-        <span class="price">69,90</span>
-        <span class="size-unico">Tamanho único</span>
-        <button class="btn-add-cart" onclick="addToCartFromCard(this)">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-          Adicionar à Cesta
-        </button>
-      </div>
-    </div>
 
     <div id="no-results">Nenhum produto encontrado.</div>
   </div>
@@ -1351,11 +1585,74 @@
   <div class="wrap reveal">
     <p class="eyebrow">Fale com a gente</p>
     <h2>Vamos encontrar o seu maiô perfeito?</h2>
-    <a href="https://wa.me/55" class="btn btn-gold">Chamar no WhatsApp</a>
+    <a href="https://wa.me/5588496606744" class="btn btn-gold">Chamar no WhatsApp</a>
   </div>
 </section>
 
 
+
+<!-- ============ GUIA DE TAMANHOS ============ -->
+<section class="size-guide" id="guia-tamanhos">
+  <div class="wrap">
+    <div class="size-guide-head reveal">
+      <p class="eyebrow">Como escolher</p>
+      <h2>Guia de Tamanhos</h2>
+      <p>Meça o seu corpo sem apertar a fita métrica e compare com a tabela abaixo. Em caso de dúvida entre dois tamanhos, opte sempre pelo maior.</p>
+    </div>
+    <div class="size-table-wrap reveal">
+      <table class="size-table">
+        <caption style="margin-bottom: 10px;">Medidas em centímetros</caption>
+       <thead>
+          <tr>
+            <th>Tamanho</th>
+            <th>Busto</th>
+            <th>Cintura</th>
+            <th>Quadril</th>
+            <th>Numeração</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>PP</td>
+            <td>78–82</td>
+            <td>60–64</td>
+            <td>86–90</td>
+            <td>34–36</td>
+          </tr>
+          <tr>
+            <td>P</td>
+            <td>83–87</td>
+            <td>65–69</td>
+            <td>91–95</td>
+            <td>38–40</td>
+          </tr>
+          <tr>
+            <td>M</td>
+            <td>88–92</td>
+            <td>70–74</td>
+            <td>96–100</td>
+            <td>42–44</td>
+          </tr>
+          <tr>
+            <td>G</td>
+            <td>93–98</td>
+            <td>75–80</td>
+            <td>101–106</td>
+            <td>46–48</td>
+          </tr>
+          <tr>
+            <td>GG</td>
+            <td>99–104</td>
+            <td>81–86</td>
+            <td>107–112</td>
+            <td>50–52</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="size-guide-note reveal">✦ Ainda com dúvida sobre o tamanho ideal? Fale com a gente pelo WhatsApp e te ajudamos a escolher o caimento perfeito.</p>
+  </div>
+</section>
 
 <!-- ============ FOOTER COM MAR ANIMADO ============ -->
 <div class="footer-container">
@@ -1391,22 +1688,19 @@
         </div>
         <div class="col">
           <h4>Ajuda</h4>
-          <a href="#">Guia de Tamanhos</a>
-          <a href="#">Trocas e Devoluções</a>
-          <a href="#">Políticas de Envio</a>
-          <a href="#">Fale Conosco</a>
+          <a href="#guia-tamanhos">Guia de Tamanhos</a>
+          <a href="https://wa.me/5588496606744">Fale Conosco</a>
         </div>
         <div class="col">
           <h4>Contato</h4>
-          <p>Natal, RN - Brasil</p>
-          <p>contato@babettemodapraia.com</p>
+          <p> Rua Cruzeiro do Sul,<br>Santos Reis, Parnamirim, <BR>RN - Brasil</p>
+          <p>Telefone: (84) 9660-6744</p>
         </div>
       </div>
       <div class="foot-bottom">
         <p>&copy; 2026 Babette Moda Praia. Todos os direitos reservados.</p>
         <div class="socials">
-          <a href="#" aria-label="Instagram">IG</a>
-          <a href="#" aria-label="Pinterest">PN</a>
+          <a href="https://www.instagram.com/praiababettemoda/" aria-label="Instagram">Instagram</a>
         </div>
       </div>
     </div>
@@ -1450,6 +1744,16 @@
 </aside>
 
 <div id="toast"></div>
+
+<div class="lightbox" id="lightbox" onclick="if(event.target===this)closeLightbox()">
+  <div class="lightbox-inner">
+    <button class="lightbox-close" onclick="closeLightbox()" aria-label="Fechar">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg>
+    </button>
+    <img id="lightbox-img" src="" alt="">
+    <div class="lightbox-caption" id="lightbox-caption"></div>
+  </div>
+</div>
 
 <script>
 const WA_NUM = '558496606744';
@@ -1729,6 +2033,21 @@ function applyFilters() {
   document.getElementById('no-results').style.display = vis===0?'block':'none';
   document.getElementById('res-count').textContent = vis+' produto'+(vis!==1?'s':'');
 }
+
+/* ── LIGHTBOX ── */
+function openLightbox(src, alt) {
+  const lb = document.getElementById('lightbox');
+  document.getElementById('lightbox-img').src = src;
+  document.getElementById('lightbox-img').alt = alt || '';
+  document.getElementById('lightbox-caption').textContent = alt || '';
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
 
 /* ── TOAST ── */
 function showToast(msg) {
